@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import ProductFlow from "./ProductFlow";
 
-const heroLines = ["The payment", "interface layer for", "programmable money."];
+const heroLines = ["The payment interface", "layer for stablecoins"];
 
 const lineWrap = { hidden: {}, show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } } };
 const lineUp = {
@@ -13,9 +13,9 @@ const lineUp = {
 
 const stats = [
   { value: "04", label: "Specialised products", color: "#0A0A0A" },
-  { value: "6+", label: "Networks supported", color: "#7C3AED" },
+  { value: "6+", label: "Networks supported", color: "#4F46E5" },
   { value: "99.99%", label: "Uptime target", color: "#0A0A0A" },
-  { value: "Real-time", label: "Settlement", color: "#7C3AED" },
+  { value: "Real-time", label: "Settlement", color: "#4F46E5" },
 ];
 
 export default function Hero() {
@@ -23,11 +23,11 @@ export default function Hero() {
 
   return (
     <section id="hero" data-testid="hero-section" className="relative min-h-screen w-full overflow-hidden bg-[#FBFBF7] pt-32 md:pt-40">
-      {/* simple, subtle light-purple glow (single, static) */}
+      {/* simple, subtle indigo glow (single, static) */}
       <div
         aria-hidden
         className="pointer-events-none absolute right-[-10%] top-[-5%] h-[60vw] w-[60vw] rounded-full opacity-[0.5]"
-        style={{ background: "radial-gradient(circle, rgba(167,139,250,0.14), transparent 62%)" }}
+        style={{ background: "radial-gradient(circle, rgba(129,140,248,0.13), transparent 62%)" }}
       />
 
       <div className="relative z-10 mx-auto grid max-w-[1400px] grid-cols-1 gap-12 px-5 pb-20 md:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
@@ -38,7 +38,7 @@ export default function Hero() {
             initial="hidden"
             animate="show"
             data-testid="hero-heading"
-            className="font-display text-5xl font-black leading-[0.94] tracking-tighter text-[#0A0A0A] sm:text-6xl md:text-7xl lg:text-[5.6rem]"
+            className="font-display text-4xl font-black leading-[1.02] tracking-tight text-[#0A0A0A] sm:text-5xl md:text-[3.25rem] lg:text-[3.75rem]"
           >
             {heroLines.map((line, i) => (
               <span key={i} className="reveal-mask">
@@ -53,10 +53,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.6 }}
-            className="mt-8 max-w-md text-base leading-relaxed text-neutral-600 md:text-lg"
+            className="mt-7 max-w-lg text-sm font-light leading-relaxed text-neutral-500 md:text-[15px]"
           >
-            Actalink unifies crypto, cards, and fiat into seamless interfaces — from storing
-            assets to depositing funds, accepting payments and spending globally.
+            Infrastructure powering the complete lifecycle of stablecoin payments — from storing
+            assets and funding accounts to accepting payments and spending anywhere card payments
+            are accepted.
           </motion.p>
 
           <motion.div
@@ -68,7 +69,7 @@ export default function Hero() {
             <button
               onClick={scrollToProducts}
               data-testid="hero-cta"
-              className="group inline-flex items-center gap-2.5 rounded-full bg-[#7C3AED] px-7 py-4 text-sm font-semibold text-white shadow-[0_12px_30px_-8px_rgba(124,58,237,0.55)] transition-[transform,background-color] duration-300 hover:-translate-y-0.5 hover:bg-[#6D28D9]"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-[#4F46E5] px-7 py-4 text-sm font-semibold text-white shadow-[0_12px_30px_-8px_rgba(79,70,229,0.55)] transition-[transform,background-color] duration-300 hover:-translate-y-0.5 hover:bg-[#4338CA]"
             >
               Explore the products
               <ArrowRight size={17} className="transition-transform duration-300 group-hover:translate-x-1" />
