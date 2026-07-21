@@ -51,35 +51,35 @@ const ProductCard = ({ p, index }) => {
         ref={ref}
         onMouseMove={onMove}
         data-testid={`product-card-${p.name.toLowerCase()}`}
-        className="group relative h-full overflow-hidden rounded-[28px] border border-white/[0.08] bg-[#0E0F12] p-8 transition-transform duration-500 hover:-translate-y-1 md:p-10"
+        className="group relative h-full overflow-hidden rounded-[28px] border border-black/[0.07] bg-white p-8 shadow-[0_10px_40px_-24px_rgba(15,23,42,0.35)] transition-[transform,box-shadow] duration-500 hover:-translate-y-1 hover:shadow-[0_28px_60px_-30px_rgba(79,70,229,0.3)] md:p-10"
       >
-        {/* blue spotlight */}
+        {/* indigo spotlight */}
         <div
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{ background: "radial-gradient(340px circle at var(--mx) var(--my), rgba(79,70,229,0.16), transparent 70%)" }}
+          style={{ background: "radial-gradient(360px circle at var(--mx) var(--my), rgba(79,70,229,0.09), transparent 70%)" }}
         />
         <div className="relative z-10">
           <div className="flex items-start justify-between">
-            <span className="grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-white/5 text-indigo-400">
+            <span className="grid h-12 w-12 place-items-center rounded-2xl border border-black/[0.06] bg-indigo-50 text-indigo-600">
               <Icon size={20} />
             </span>
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-neutral-500">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-indigo-600">
               {String(index + 1).padStart(2, "0")} · {p.step}
             </span>
           </div>
 
-          <h3 className="mt-8 font-display text-4xl font-extrabold tracking-tight text-white md:text-5xl">{p.name}</h3>
-          <p className="mt-4 max-w-md text-[15px] leading-relaxed text-white/55">{p.desc}</p>
+          <h3 className="mt-8 font-display text-4xl font-extrabold tracking-tight text-[#0A0A0A] md:text-5xl">{p.name}</h3>
+          <p className="mt-4 max-w-md text-[15px] leading-relaxed text-neutral-600">{p.desc}</p>
 
           <div className="mt-8 flex flex-wrap gap-2">
             {p.tags.map((t) => (
-              <span key={t} className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-white/50">
+              <span key={t} className="rounded-full border border-black/[0.07] bg-neutral-50 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-neutral-500">
                 {t}
               </span>
             ))}
           </div>
 
-          <div className="mt-8 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-white/40 transition-colors duration-300 group-hover:text-indigo-400">
+          <div className="mt-8 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-neutral-400 transition-colors duration-300 group-hover:text-indigo-600">
             Learn more
             <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </div>
