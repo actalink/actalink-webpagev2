@@ -41,7 +41,7 @@ export default function Manifesto() {
               className="group relative flex flex-col justify-between bg-[#FBFBF7] p-8 transition-colors duration-500 hover:bg-white md:p-12"
             >
               <div>
-                <span className="font-display text-7xl font-black leading-none text-black/[0.07] transition-colors duration-500 group-hover:text-blue-500/40 md:text-8xl">
+                <span className="font-display text-7xl font-black leading-none text-black/[0.07] transition-colors duration-500 group-hover:text-violet-500/40 md:text-8xl">
                   {c.n}
                 </span>
                 <h3 className="mt-8 font-display text-2xl font-bold tracking-tight text-[#0A0A0A] md:text-3xl">

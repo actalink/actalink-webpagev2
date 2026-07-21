@@ -56,11 +56,11 @@ const ProductCard = ({ p, index }) => {
         {/* blue spotlight */}
         <div
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{ background: "radial-gradient(340px circle at var(--mx) var(--my), rgba(59,130,246,0.16), transparent 70%)" }}
+          style={{ background: "radial-gradient(340px circle at var(--mx) var(--my), rgba(139,92,246,0.16), transparent 70%)" }}
         />
         <div className="relative z-10">
           <div className="flex items-start justify-between">
-            <span className="grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-white/5 text-blue-400">
+            <span className="grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-white/5 text-violet-400">
               <Icon size={20} />
             </span>
             <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-neutral-500">
@@ -79,7 +79,7 @@ const ProductCard = ({ p, index }) => {
             ))}
           </div>
 
-          <div className="mt-8 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-white/40 transition-colors duration-300 group-hover:text-blue-400">
+          <div className="mt-8 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-white/40 transition-colors duration-300 group-hover:text-violet-400">
             Learn more
             <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </div>

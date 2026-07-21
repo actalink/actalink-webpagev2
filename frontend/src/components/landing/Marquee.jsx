@@ -17,7 +17,7 @@ export default function Marquee() {
             <span className="px-8 font-display text-2xl font-bold uppercase tracking-tight text-[#0A0A0A] md:px-12 md:text-4xl">
               {t}
             </span>
-            <span className="text-blue-600">✳</span>
+            <span className="text-violet-500">✳</span>
           </div>
         ))}
       </div>

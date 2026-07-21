@@ -51,7 +51,7 @@ export default function Footer() {
                     <a
                       href="#footer"
                       data-testid={`footer-link-${l.toLowerCase()}`}
-                      className="text-sm text-white/70 transition-colors duration-200 hover:text-blue-400"
+                      className="text-sm text-white/70 transition-colors duration-200 hover:text-violet-400"
                     >
                       {l}
                     </a>
