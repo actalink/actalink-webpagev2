@@ -22,7 +22,7 @@ export default function Hero() {
   const scrollToProducts = () => document.querySelector("#products")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section id="hero" data-testid="hero-section" className="relative min-h-screen w-full overflow-hidden bg-[#FBFBF7] pt-32 md:pt-40">
+    <section id="hero" data-testid="hero-section" className="relative w-full overflow-hidden bg-[#FBFBF7] pt-28 pb-10 md:pb-14 md:pt-36">
       {/* simple, subtle indigo glow (single, static) */}
       <div
         aria-hidden
@@ -30,7 +30,7 @@ export default function Hero() {
         style={{ background: "radial-gradient(circle, rgba(129,140,248,0.13), transparent 62%)" }}
       />
 
-      <div className="relative z-10 mx-auto grid max-w-[1400px] grid-cols-1 gap-12 px-5 pb-20 md:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
+      <div className="relative z-10 mx-auto grid max-w-[1400px] grid-cols-1 gap-12 px-5 md:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
         {/* Left — copy */}
         <div>
           <motion.h1

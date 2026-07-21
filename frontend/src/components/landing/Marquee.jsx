@@ -2,7 +2,6 @@ import React from "react";
 
 const items = [
   "The Payment Interface Layer",
-  "Programmable Money",
   "Store · Deposit · Accept · Spend",
   "One Interoperable Ecosystem",
 ];

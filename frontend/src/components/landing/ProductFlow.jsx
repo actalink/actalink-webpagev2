@@ -34,10 +34,11 @@ const CARD =
   "absolute flex h-[44cqw] flex-col overflow-hidden rounded-[3cqw] border border-black/[0.07] bg-white/85 p-[3cqw] backdrop-blur-xl shadow-[0_24px_60px_-30px_rgba(15,23,42,0.5)]";
 
 const StepTag = ({ n, label }) => (
-  <div className="mb-[1.8cqw] flex items-center gap-[1.4cqw] font-mono text-[2cqw] uppercase tracking-[0.18em]">
-    <span className="inline-block h-[1.4cqw] w-[1.4cqw] rounded-full bg-[#4F46E5]" />
-    <span className="text-neutral-400">{n}</span>
-    <span className="text-neutral-600">{label}</span>
+  <div className="mb-[2cqw] flex items-center gap-[1.6cqw]">
+    <span className="grid place-items-center rounded-[1.2cqw] bg-[#4F46E5] px-[1.8cqw] py-[0.8cqw] font-display text-[2.4cqw] font-bold leading-none text-white">
+      {n}
+    </span>
+    <span className="font-mono text-[2.4cqw] font-semibold uppercase tracking-[0.14em] text-neutral-800">{label}</span>
   </div>
 );
 
@@ -50,7 +51,7 @@ const Chip = ({ children }) => (
 const Head = ({ icon, label }) => (
   <div className="flex items-center gap-[1.8cqw]">
     <span className="grid h-[6cqw] w-[6cqw] place-items-center rounded-full bg-indigo-100 text-indigo-600">{icon}</span>
-    <span className="font-mono text-[2.1cqw] uppercase tracking-[0.18em] text-neutral-400">{label}</span>
+    <span className="whitespace-nowrap font-mono text-[2cqw] uppercase tracking-[0.12em] text-neutral-400">{label}</span>
   </div>
 );
 
@@ -58,7 +59,7 @@ export default function ProductFlow() {
   return (
     <div
       data-testid="product-flow"
-      className="relative mx-auto w-full max-w-[520px] aspect-[500/530]"
+      className="relative mx-auto w-full max-w-[500px] aspect-[500/530]"
       style={{ containerType: "inline-size" }}
     >
       {/* connecting lines — indigo. Deposit->Store->Spend->Accept */}
@@ -67,16 +68,6 @@ export default function ProductFlow() {
         <motion.path d="M385 250 L385 290" stroke="#A5B4FC" strokeWidth="2.6" strokeLinecap="round" variants={pathDraw(1)} initial="hidden" animate="show" />
         <motion.path d="M270 400 L230 400" stroke="#818CF8" strokeWidth="2.6" strokeLinecap="round" variants={pathDraw(2)} initial="hidden" animate="show" />
       </svg>
-
-      {/* External wallets label */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.1, duration: 0.6 }}
-        className="absolute left-[0cqw] top-[-4.5cqw] font-mono text-[2cqw] uppercase tracking-[0.15em] text-neutral-400"
-      >
-        ↳ external wallets
-      </motion.div>
 
       {/* 01 — DEPOSIT / OpenDeposit  (TOP-LEFT) */}
       <motion.div custom={0} variants={cardIn} initial="hidden" animate="show" className={`${CARD} left-[0cqw] top-[6cqw] w-[46cqw]`}>

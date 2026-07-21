@@ -24,8 +24,7 @@ export default function Manifesto() {
     <section id="manifesto" data-testid="manifesto-section" className="relative w-full px-5 py-28 md:px-10 md:py-40">
       <div className="mx-auto max-w-[1400px]">
         <Reveal className="mb-16 md:mb-24">
-          <span className="font-mono text-xs uppercase tracking-[0.24em] text-neutral-500">Why this matters</span>
-          <h2 className="mt-6 max-w-4xl font-display text-4xl font-extrabold leading-[1.02] tracking-tight text-[#0A0A0A] sm:text-5xl md:text-6xl">
+          <h2 className="max-w-4xl font-display text-4xl font-extrabold leading-[1.02] tracking-tight text-[#0A0A0A] sm:text-5xl md:text-6xl">
             One company. One platform.
             <br />
             <span className="text-neutral-400">Four revenue engines.</span>
