@@ -1,0 +1,116 @@
+{
+  "theme": "light",
+  "typography": {
+    "heading_font": "Cabinet Grotesk, ui-sans-serif, system-ui, sans-serif",
+    "body_font": "Inter, ui-sans-serif, system-ui, sans-serif",
+    "strategies": [
+      "Use extremely bold (font-black, 800/900 weight) for headings to create visual tension.",
+      "Use tight tracking (tracking-tighter) for massive headings, and wide tracking for overlines.",
+      "Body text must remain neutral and readable (font-normal) to maintain trust and financial credibility.",
+      "Do NOT center text by default; use left alignment for strong structural grids."
+    ],
+    "scale": {
+      "h1": "text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] leading-[0.95] tracking-tighter font-black",
+      "h2": "text-4xl sm:text-5xl md:text-6xl tracking-tight font-extrabold",
+      "h3": "text-2xl sm:text-3xl tracking-tight font-bold",
+      "body": "text-base md:text-lg text-neutral-600 leading-relaxed",
+      "labels": "text-xs md:text-sm tracking-[0.2em] uppercase font-bold text-neutral-500"
+    }
+  },
+  "colors": {
+    "background": {
+      "primary": "#FBFBFB",
+      "mesh_gradients": ["#E6F4EA", "#F5F5DC", "#E6E6FA"]
+    },
+    "text": {
+      "primary": "#0A0A0A",
+      "secondary": "#52525B",
+      "muted": "#A1A1AA"
+    },
+    "brand": {
+      "cta": "#4F46E5",
+      "cta_hover": "#4338CA",
+      "product_card_bg": "#0F291E",
+      "product_card_border": "#1A3B2D",
+      "product_card_text": "#F8FAFC",
+      "product_card_accent": "#22C55E"
+    }
+  },
+  "visual_enhancers": {
+    "background": "Use a subtle grain/noise overlay globally. Mix slow-moving soft pastel CSS radial gradients (green/beige/lavender) in the hero to create the 'light/airy' mesh background.",
+    "cards": "Product cards must be dark forest green (#0F291E) to contrast the light airy background. Use a 1px solid inner border (border-white/10) to define edges.",
+    "spotlight": "Add a radial gradient spotlight effect on hover for the dark product cards.",
+    "lines": "Connect the product cards using a drawn SVG path with Framer Motion to illustrate the Store -> Deposit -> Accept -> Spend flow."
+  },
+  "components": {
+    "hero": {
+      "layout": "Grid or flex layout balancing massive typography on the left/top and a connected cluster of 4 dark green product cards on the right/bottom.",
+      "motion": "Implement Awwwards-style scroll-triggered line-by-line staggered text reveal for the H1 using overflow-hidden wrappers and translateY.",
+      "stats_row": "Minimal inline stats row (04 products, 6+ networks, 99.99% uptime, Real-time) with bold numbers and small labels."
+    },
+    "manifesto": {
+      "layout": "Swiss-style bento or multi-column grid.",
+      "style": "Minimalist text over light background. Huge chapter numbers (01, 02, 03) in a light gray (#E5E5E5) acting as watermarks or anchors for paragraphs."
+    },
+    "products": {
+      "layout": "Bento grid or vertical staggered scroll layout for Bexo, OpenDeposit, ActaPay, Straight.",
+      "style": "Dark forest green product UI cards placed within a light container. Use clipping masks and spotlight effects. Showcase product capabilities via UI abstractions inside the cards."
+    },
+    "marquee": {
+      "style": "Slow editorial ribbon. Pale background, wide tracking, uppercase sans-serif.",
+      "content": "A continuous loop emphasizing 'The Payment Interface Layer for Programmable Money — Interoperable Ecosystem'"
+    },
+    "footer": {
+      "layout": "Massive bottom footer with 'Let's Talk' CTA at text-[10vw] filling the width.",
+      "style": "Dark background (#0A0A0A) for the footer to provide a final heavy grounding, or keep it ultra-light with black text."
+    }
+  },
+  "motion": {
+    "libraries": ["framer-motion", "lenis"],
+    "guidelines": [
+      "Use Lenis for premium smooth momentum scrolling.",
+      "Hero text must use Framer Motion for line-by-line reveal (translateY from 100% to 0 inside an overflow-hidden wrapper, staggered by 0.1s).",
+      "Product connection lines must draw themselves (SVG pathLength from 0 to 1) on load.",
+      "Implement subtle parallax on background mesh and floating elements."
+    ]
+  },
+  "accessibility": {
+    "contrast": "Ensure the CTA button (#4F46E5) and deep black text (#0A0A0A) meet WCAG 3:1 against the light background. Green text inside dark cards must use a bright neon variant for contrast.",
+    "motion": "Respect prefers-reduced-motion for the line animations and marquee."
+  },
+  "media": {
+    "images": [
+      {
+        "url": "https://images.unsplash.com/photo-1635776063328-153b13e3c245?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjV8MHwxfHNlYXJjaHw0fHxzb2Z0JTIwcGFzdGVsJTIwZ3JhZGllbnQlMjBhYnN0cmFjdCUyMGJhY2tncm91bmR8ZW58MHx8fHwxNzg0NTkzOTc1fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Soft gradient background reference for mesh",
+        "category": "hero_background"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDV8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMDNkJTIwc2hhcGVzJTIwbWluaW1hbHxlbnwwfHx8fDE3ODQ1OTM5NzV8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Abstract 3D orb for decorative elements",
+        "category": "decorative"
+      }
+    ]
+  },
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic outputs. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Do not make generic centered layouts. Use grid, overlap, and asymmetry. Tension creates interest.",
+    "Create depth through layered design elements with z-index hierarchy and optical alignment.",
+    "You MUST NOT apply universal transition (e.g., transition: all). Add specific transitions (opacity, transform).",
+    "You MUST NOT center align the app container in App.css.",
+    "Always use modern button styles (pill-shaped or sharp) with interaction animations. Limit primary color to CTAs.",
+    "NEVER use AI assistant Emoji characters for icons. Use lucide-react.",
+    "Every interaction needs micro-animations (hover states, transitions). Static = dead.",
+    "Use generous spacing (p-8, p-12, p-24) to avoid cramped designs. Negative space is a premium feature.",
+    "All interactive and key informational elements MUST include a `data-testid` attribute for automated testing."
+  ],
+  "instructions_to_main_agent": [
+    "1. Initialize framer-motion, lucide-react, react-fast-marquee.",
+    "2. Setup Lenis smooth scroll globally.",
+    "3. Implement the light background with soft pastel mesh gradients in CSS (green, beige, lavender) with a noise overlay.",
+    "4. HERO: Build a dynamic layout. Left side: Massive H1 'Programmable Money' using line-by-line reveal. Right side: A kinetic graphic with 4 dark green cards (Store, Deposit, Accept, Spend) linked by SVG paths drawing themselves.",
+    "5. MANIFESTO: Swiss grid with large numbering ('01', '02'). Left-align content. Emphasize the bold typography and use negative space.",
+    "6. PRODUCTS: 4 bento boxes or vertical list of the dark green product UI cards. Keep the contrast stark against the light site background.",
+    "7. FOOTER & MARQUEE: Simple, bold footer with an oversized CTA and an editorial slow-scrolling marquee directly above it."
+  ]
+}
