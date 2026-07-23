@@ -34,7 +34,7 @@ export default function Navbar() {
   const navItems = [
     { label: "Home", action: () => navigate("/") },
     { label: "Products", action: () => goSection("products") },
-    { label: "Blog", action: () => navigate("/blogs") },
+    // { label: "Blog", action: () => navigate("/blogs") },
   ];
 
   return (
@@ -47,11 +47,21 @@ export default function Navbar() {
     >
       <div
         className={`mx-auto flex max-w-[1400px] items-center justify-between px-5 md:px-10 transition-[padding,background,box-shadow] duration-500 ${
-          scrolled ? "my-2 rounded-full border border-black/5 bg-white/70 py-2.5 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.06)]" : "py-6"
+          scrolled
+            ? "my-2 rounded-full border border-black/5 bg-white/70 py-2.5 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
+            : "py-6"
         }`}
       >
-        <button onClick={() => navigate("/")} data-testid="nav-logo" className="flex items-center">
-          <img src="/logos/actalink-black.png" alt="Actalink" className="h-9 w-auto md:h-11" />
+        <button
+          onClick={() => navigate("/")}
+          data-testid="nav-logo"
+          className="flex items-center"
+        >
+          <img
+            src="/logos/actalink-black.png"
+            alt="Actalink"
+            className="h-9 w-auto md:h-11"
+          />
         </button>
 
         <nav className="hidden items-center gap-9 md:flex">
@@ -74,7 +84,10 @@ export default function Navbar() {
           className="group inline-flex items-center gap-1.5 rounded-full border border-black/15 bg-white px-4 py-2 text-sm font-semibold text-[#0A0A0A] transition-colors hover:border-black hover:bg-black hover:text-white"
         >
           Get in touch
-          <ArrowUpRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <ArrowUpRight
+            size={15}
+            className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
         </button>
       </div>
     </motion.header>
