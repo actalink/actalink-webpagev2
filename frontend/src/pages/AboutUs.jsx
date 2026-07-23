@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import Layout from "@/components/Layout";
+import Seo from "@/components/Seo";
 import Reveal from "@/components/landing/Reveal";
 
 const stats = [
@@ -27,8 +28,17 @@ const team = [
 
 export default function AboutUs() {
   const navigate = useNavigate();
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About Actalink",
+    url: "https://acta.link/about-us",
+    description: "Actalink is building the payment interface layer for stablecoins — infrastructure powering the complete lifecycle of stablecoin payments.",
+    mainEntity: { "@type": "Organization", name: "Actalink", url: "https://acta.link/" },
+  };
   return (
     <Layout>
+      <Seo title="About us" path="/about-us" description="Actalink is building the payment interface layer for stablecoins — one company, four products, one interoperable platform." jsonLd={jsonLd} />
       <main data-testid="about-page" className="relative w-full px-5 pt-36 pb-24 md:px-10 md:pt-44 md:pb-32">
         <div className="mx-auto max-w-[1400px]">
           <Reveal>

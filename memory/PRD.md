@@ -37,3 +37,11 @@ Exactly 4 sections: Hero, Manifesto, Products, Footer. Hero animates the 4-produ
 - Footer: white Actalink logo, tagline updated; columns = Products, Resources (Docs↗ external, About us), Social (X/LinkedIn/YouTube external). Removed old Company column.
 - Logos: /public/logos/actalink-black.png (nav), actalink-white.png (footer), bexo.webp + actapay.webp (product cards).
 - Verified: testing_agent iteration_2 = 100% (45/45), no console errors, mobile-390 no overflow.
+
+## Update (Dec 2025 — SEO / AI discoverability + logo)
+- Per-route SEO via src/components/Seo.jsx: dynamic title, description, canonical, Open Graph, Twitter cards, and JSON-LD (BlogPosting on posts, Blog on list, AboutPage on about).
+- Static index.html: rich meta, keywords, robots directives, OG/Twitter, RSS alternate link, and JSON-LD @graph (Organization + WebSite).
+- public/ discovery files (all serving 200): robots.txt (welcomes GPTBot/ClaudeBot/PerplexityBot/Google-Extended/CCBot etc + sitemap), sitemap.xml (all routes + posts), llms.txt (LLM-friendly index), feed.xml (RSS), og-image.png (1200x630 social card).
+- blogs.js gained iso dates for structured data.
+- Logos cropped to content bounds and enlarged (navbar/footer h-9 md:h-11) for visibility.
+- Canonical/sitemap URLs use production domain https://acta.link.

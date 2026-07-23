@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Layout from "@/components/Layout";
+import Seo from "@/components/Seo";
 import Reveal from "@/components/landing/Reveal";
 import { getBlog, blogs } from "@/data/blogs";
 
@@ -35,9 +36,28 @@ export default function BlogPost() {
   }
 
   const more = blogs.filter((b) => b.slug !== slug).slice(0, 2);
+  const url = `https://acta.link/blogs/${post.slug}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    image: "https://acta.link/og-image.png",
+    datePublished: post.iso,
+    dateModified: post.iso,
+    articleSection: post.category,
+    author: { "@type": "Organization", name: post.author, url: "https://acta.link/" },
+    publisher: {
+      "@type": "Organization",
+      name: "Actalink",
+      logo: { "@type": "ImageObject", url: "https://acta.link/logos/actalink-black.png" },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+  };
 
   return (
     <Layout>
+      <Seo title={post.title} description={post.excerpt} path={`/blogs/${post.slug}`} type="article" jsonLd={jsonLd} />
       <main data-testid="blog-post-page" className="relative w-full px-5 pt-36 pb-24 md:px-10 md:pt-44 md:pb-32">
         <article className="mx-auto max-w-[820px]">
           <Reveal>

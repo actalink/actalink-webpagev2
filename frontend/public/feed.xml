@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Actalink Blog</title>
+    <link>https://acta.link/blogs</link>
+    <description>Insights on programmable money and stablecoin payments from Actalink.</description>
+    <language>en-us</language>
+    <atom:link href="https://acta.link/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The stablecoin payment stack, explained</title>
+      <link>https://acta.link/blogs/the-stablecoin-payment-stack-explained</link>
+      <guid>https://acta.link/blogs/the-stablecoin-payment-stack-explained</guid>
+      <pubDate>Tue, 02 Dec 2025 09:00:00 GMT</pubDate>
+      <category>Insights</category>
+      <description>From storing assets to spending them anywhere, here's how the four layers of programmable money fit together into a single interoperable platform.</description>
+    </item>
+    <item>
+      <title>Why self-custody is the future of consumer finance</title>
+      <link>https://acta.link/blogs/self-custody-is-the-future-of-consumer-finance</link>
+      <guid>https://acta.link/blogs/self-custody-is-the-future-of-consumer-finance</guid>
+      <pubDate>Mon, 24 Nov 2025 09:00:00 GMT</pubDate>
+      <category>Product</category>
+      <description>Your keys, your funds. How gasless self-custody wallets like Bexo make on-chain banking feel effortless.</description>
+    </item>
+    <item>
+      <title>Accepting stablecoins in-store: a merchant's guide</title>
+      <link>https://acta.link/blogs/accepting-stablecoins-in-store-merchant-guide</link>
+      <guid>https://acta.link/blogs/accepting-stablecoins-in-store-merchant-guide</guid>
+      <pubDate>Wed, 12 Nov 2025 09:00:00 GMT</pubDate>
+      <category>Guides</category>
+      <description>Payment links, subscriptions, invoices and POS — everything a merchant needs to accept stablecoin payments with instant settlement.</description>
+    </item>
+    <item>
+      <title>Instant settlement: how ActaPay clears payments</title>
+      <link>https://acta.link/blogs/instant-settlement-how-actapay-clears-payments</link>
+      <guid>https://acta.link/blogs/instant-settlement-how-actapay-clears-payments</guid>
+      <pubDate>Thu, 30 Oct 2025 09:00:00 GMT</pubDate>
+      <category>Engineering</category>
+      <description>A technical look at how stablecoin rails collapse the settlement window from days to seconds.</description>
+    </item>
+    <item>
+      <title>Spending stablecoins anywhere with Straight</title>
+      <link>https://acta.link/blogs/spending-stablecoins-anywhere-with-straight</link>
+      <guid>https://acta.link/blogs/spending-stablecoins-anywhere-with-straight</guid>
+      <pubDate>Sat, 18 Oct 2025 09:00:00 GMT</pubDate>
+      <category>Product</category>
+      <description>Straight is a stablecoin card network that lets users spend directly from self-custody wallets, anywhere card payments are accepted.</description>
+    </item>
+  </channel>
+</rss>

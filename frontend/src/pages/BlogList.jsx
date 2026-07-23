@@ -1,14 +1,31 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
+import Seo from "@/components/Seo";
 import { BlogCard } from "@/components/landing/BlogPreview";
 import Reveal from "@/components/landing/Reveal";
 import { blogs } from "@/data/blogs";
 
 export default function BlogList() {
   const navigate = useNavigate();
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "Actalink Blog",
+    url: "https://acta.link/blogs",
+    description: "Insights on programmable money and stablecoin payments from Actalink.",
+    blogPost: blogs.map((b) => ({
+      "@type": "BlogPosting",
+      headline: b.title,
+      description: b.excerpt,
+      datePublished: b.iso,
+      url: `https://acta.link/blogs/${b.slug}`,
+      author: { "@type": "Organization", name: "Actalink" },
+    })),
+  };
   return (
     <Layout>
+      <Seo title="Blog" path="/blogs" description="Insights, guides and engineering notes on stablecoin payments — from storing assets to spending anywhere." jsonLd={jsonLd} />
       <main data-testid="blog-list-page" className="relative w-full px-5 pt-36 pb-24 md:px-10 md:pt-44 md:pb-32">
         <div className="mx-auto max-w-[1400px]">
           <Reveal className="mb-14 md:mb-20">

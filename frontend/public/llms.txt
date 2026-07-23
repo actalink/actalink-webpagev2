@@ -1,0 +1,37 @@
+# Actalink
+
+> Actalink is the payment interface layer for stablecoins — infrastructure powering the complete lifecycle of stablecoin payments, from storing assets and funding accounts to accepting payments and spending anywhere card payments are accepted. One company, four products, one interoperable platform.
+
+Actalink connects every stage of the stablecoin payment journey through four products that each work independently but compound together:
+
+- Bexo (Store): self-custody wallet with gasless transactions — your keys, your funds, Banking On-Chain.
+- OpenDeposit (Deposit): embedded infrastructure that lets applications accept stablecoin deposits from connected wallets.
+- ActaPay (Accept): merchant payment gateway for online and in-store stablecoin payments with payment links, subscriptions, invoices, POS, and instant settlement.
+- Straight (Spend): stablecoin card network enabling users to spend directly from self-custody wallets anywhere card payments are accepted.
+
+## Core pages
+
+- [Home](https://acta.link/): Overview of the Actalink platform and the four-product stablecoin payment flow (Store → Deposit → Accept → Spend).
+- [Products](https://acta.link/#products): Details on Bexo, OpenDeposit, ActaPay and Straight.
+- [About us](https://acta.link/about-us): Company mission, story, values and team.
+
+## Blog
+
+- [The stablecoin payment stack, explained](https://acta.link/blogs/the-stablecoin-payment-stack-explained): How the four layers of programmable money fit into a single interoperable platform.
+- [Why self-custody is the future of consumer finance](https://acta.link/blogs/self-custody-is-the-future-of-consumer-finance): How gasless self-custody wallets like Bexo make on-chain banking effortless.
+- [Accepting stablecoins in-store: a merchant's guide](https://acta.link/blogs/accepting-stablecoins-in-store-merchant-guide): Payment links, subscriptions, invoices, POS and instant settlement with ActaPay.
+- [Instant settlement: how ActaPay clears payments](https://acta.link/blogs/instant-settlement-how-actapay-clears-payments): How stablecoin rails collapse the settlement window from days to seconds.
+- [Spending stablecoins anywhere with Straight](https://acta.link/blogs/spending-stablecoins-anywhere-with-straight): A stablecoin card network to spend directly from self-custody wallets.
+
+## Resources
+
+- [Documentation](https://docs.acta.link): Developer documentation and API reference.
+- [Sitemap](https://acta.link/sitemap.xml)
+- [RSS feed](https://acta.link/feed.xml)
+
+## Contact
+
+- Email: hello@acta.link
+- X: https://x.com/actalinkhq
+- LinkedIn: https://www.linkedin.com/company/actalink/
+- YouTube: https://www.youtube.com/@actalink
