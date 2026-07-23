@@ -29,3 +29,11 @@ Exactly 4 sections: Hero, Manifesto, Products, Footer. Hero animates the 4-produ
 - P1: Wire "Get in touch" to a real contact form + submission storage (needs backend).
 - P2: Per-product detail pages/routes; case studies; blog.
 - P2: Add OG/meta tags + favicon for social sharing.
+
+## Update (Dec 2025 — Multi-page + Blog + About)
+- Added react-router routing: `/` (Landing), `/blogs` (BlogList), `/blogs/:slug` (BlogPost), `/about-us` (AboutUs). Lenis + ScrollToTop in App.js; shared Layout (Navbar + Footer).
+- Blog: 5 dummy posts in src/data/blogs.js, blog preview section on landing (below Products), full list + article pages. Theme matches (black/grey/white/indigo). Docs link → external docs.acta.link.
+- Navbar: Actalink logo image (transparent black), links Home/Products/Blog + Get in touch.
+- Footer: white Actalink logo, tagline updated; columns = Products, Resources (Docs↗ external, About us), Social (X/LinkedIn/YouTube external). Removed old Company column.
+- Logos: /public/logos/actalink-black.png (nav), actalink-white.png (footer), bexo.webp + actapay.webp (product cards).
+- Verified: testing_agent iteration_2 = 100% (45/45), no console errors, mobile-390 no overflow.

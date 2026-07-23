@@ -51,7 +51,7 @@ export default function Navbar() {
         }`}
       >
         <button onClick={() => navigate("/")} data-testid="nav-logo" className="flex items-center">
-          <img src="/logos/actalink.png" alt="Actalink" className="h-7 w-auto md:h-8" />
+          <img src="/logos/actalink-black.png" alt="Actalink" className="h-7 w-auto md:h-8" />
         </button>
 
         <nav className="hidden items-center gap-9 md:flex">

@@ -51,7 +51,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-10 py-16 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1">
             <button onClick={() => navigate("/")} className="block">
-              <img src="/logos/actalink.png" alt="Actalink" className="h-7 w-auto brightness-0 invert md:h-8" />
+              <img src="/logos/actalink-white.png" alt="Actalink" className="h-7 w-auto md:h-8" />
             </button>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/50">
               Infrastructure powering the complete lifecycle of stablecoin payments.
