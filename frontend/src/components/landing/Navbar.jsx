@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-
-const Mark = () => (
-  <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden>
-    <path d="M4 28L16 4l12 24H21L16 17l-5 11H4z" fill="#0A0A0A" />
-  </svg>
-);
-
-const links = [
-  { label: "Home", href: "#hero" },
-  { label: "Products", href: "#products" },
-  { label: "Company", href: "#manifesto" },
-];
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
@@ -23,10 +15,27 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollTo = (e, href) => {
-    e.preventDefault();
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+  const scrollToId = (id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (window.__lenis) window.__lenis.scrollTo(el, { offset: -90 });
+    else el.scrollIntoView({ behavior: "smooth" });
   };
+
+  const goSection = (id) => {
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => scrollToId(id), 200);
+    } else {
+      scrollToId(id);
+    }
+  };
+
+  const navItems = [
+    { label: "Home", action: () => navigate("/") },
+    { label: "Products", action: () => goSection("products") },
+    { label: "Blog", action: () => navigate("/blogs") },
+  ];
 
   return (
     <motion.header
@@ -41,35 +50,32 @@ export default function Navbar() {
           scrolled ? "my-2 rounded-full border border-black/5 bg-white/70 py-2.5 backdrop-blur-xl shadow-[0_8px_30px_rgba(0,0,0,0.06)]" : "py-6"
         }`}
       >
-        <a href="#hero" onClick={(e) => scrollTo(e, "#hero")} data-testid="nav-logo" className="flex items-center gap-2">
-          <Mark />
-          <span className="font-display text-2xl font-extrabold tracking-tight text-[#0A0A0A]">Actalink</span>
-        </a>
+        <button onClick={() => navigate("/")} data-testid="nav-logo" className="flex items-center">
+          <img src="/logos/actalink.png" alt="Actalink" className="h-7 w-auto md:h-8" />
+        </button>
 
         <nav className="hidden items-center gap-9 md:flex">
-          {links.map((l) => (
-            <a
+          {navItems.map((l) => (
+            <button
               key={l.label}
-              href={l.href}
-              onClick={(e) => scrollTo(e, l.href)}
+              onClick={l.action}
               data-testid={`nav-link-${l.label.toLowerCase()}`}
               className="group relative text-sm font-medium text-neutral-700 transition-colors hover:text-black"
             >
               {l.label}
               <span className="absolute -bottom-1 left-0 h-px w-0 bg-black transition-[width] duration-300 group-hover:w-full" />
-            </a>
+            </button>
           ))}
         </nav>
 
-        <a
-          href="#footer"
-          onClick={(e) => scrollTo(e, "#footer")}
+        <button
+          onClick={() => goSection("footer")}
           data-testid="nav-get-in-touch"
           className="group inline-flex items-center gap-1.5 rounded-full border border-black/15 bg-white px-4 py-2 text-sm font-semibold text-[#0A0A0A] transition-colors hover:border-black hover:bg-black hover:text-white"
         >
           Get in touch
           <ArrowUpRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </a>
+        </button>
       </div>
     </motion.header>
   );

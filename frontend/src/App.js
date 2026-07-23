@@ -1,7 +1,20 @@
 import { useEffect } from "react";
 import "@/App.css";
 import Lenis from "lenis";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Landing from "@/pages/Landing";
+import BlogList from "@/pages/BlogList";
+import BlogPost from "@/pages/BlogPost";
+import AboutUs from "@/pages/AboutUs";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    if (window.__lenis) window.__lenis.scrollTo(0, { immediate: true });
+    else window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 
 function App() {
   useEffect(() => {
@@ -28,7 +41,15 @@ function App() {
 
   return (
     <div className="App grain">
-      <Landing />
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/blogs" element={<BlogList />} />
+          <Route path="/blogs/:slug" element={<BlogPost />} />
+          <Route path="/about-us" element={<AboutUs />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

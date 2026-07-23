@@ -1,14 +1,33 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Reveal from "./Reveal";
 
-const cols = [
-  { title: "Products", links: ["Bexo", "OpenDeposit", "ActaPay", "Straight"] },
-  { title: "Company", links: ["About", "Careers", "Press", "Contact"] },
-  { title: "Resources", links: ["Docs", "API", "Status", "Security"] },
+const products = ["Bexo", "OpenDeposit", "ActaPay", "Straight"];
+
+const socials = [
+  { label: "X", href: "https://x.com/actalinkhq" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/actalink/" },
+  { label: "YouTube", href: "https://www.youtube.com/@actalink" },
 ];
 
 export default function Footer() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const goSection = (id) => {
+    const scroll = () => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (window.__lenis) window.__lenis.scrollTo(el, { offset: -90 });
+      else el.scrollIntoView({ behavior: "smooth" });
+    };
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(scroll, 200);
+    } else scroll();
+  };
+
   return (
     <footer id="footer" data-testid="footer" className="relative w-full overflow-hidden bg-[#0A0A0A] px-5 pt-24 pb-10 text-white md:px-10 md:pt-32">
       <div className="mx-auto max-w-[1400px]">
@@ -21,7 +40,7 @@ export default function Footer() {
             <a
               href="mailto:hello@acta.link"
               data-testid="footer-contact-cta"
-              className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-acta-indigo px-7 py-4 text-sm font-semibold text-white transition-[transform,background-color] duration-300 hover:-translate-y-0.5 hover:bg-[#4338CA]"
+              className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-[#4F46E5] px-7 py-4 text-sm font-semibold text-white transition-[transform,background-color] duration-300 hover:-translate-y-0.5 hover:bg-[#4338CA]"
             >
               hello@acta.link
               <ArrowUpRight size={17} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -31,35 +50,75 @@ export default function Footer() {
 
         <div className="grid grid-cols-2 gap-10 py-16 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2">
-              <svg width="24" height="24" viewBox="0 0 32 32" fill="none" aria-hidden>
-                <path d="M4 28L16 4l12 24H21L16 17l-5 11H4z" fill="#fff" />
-              </svg>
-              <span className="font-display text-2xl font-extrabold tracking-tight">Actalink</span>
-            </div>
+            <button onClick={() => navigate("/")} className="block">
+              <img src="/logos/actalink.png" alt="Actalink" className="h-7 w-auto brightness-0 invert md:h-8" />
+            </button>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/50">
-              The payment interface layer for programmable money — powering the complete lifecycle of stablecoin payments.
+              Infrastructure powering the complete lifecycle of stablecoin payments.
             </p>
           </div>
 
-          {cols.map((c) => (
-            <div key={c.title}>
-              <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-white/40">{c.title}</h4>
-              <ul className="mt-5 space-y-3">
-                {c.links.map((l) => (
-                  <li key={l}>
-                    <a
-                      href="#footer"
-                      data-testid={`footer-link-${l.toLowerCase()}`}
-                      className="text-sm text-white/70 transition-colors duration-200 hover:text-indigo-400"
-                    >
-                      {l}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div>
+            <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-white/40">Products</h4>
+            <ul className="mt-5 space-y-3">
+              {products.map((l) => (
+                <li key={l}>
+                  <button
+                    onClick={() => goSection("products")}
+                    data-testid={`footer-link-${l.toLowerCase()}`}
+                    className="text-sm text-white/70 transition-colors duration-200 hover:text-indigo-400"
+                  >
+                    {l}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-white/40">Resources</h4>
+            <ul className="mt-5 space-y-3">
+              <li>
+                <a
+                  href="https://docs.acta.link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="footer-link-docs"
+                  className="inline-flex items-center gap-1 text-sm text-white/70 transition-colors duration-200 hover:text-indigo-400"
+                >
+                  Docs <ArrowUpRight size={13} />
+                </a>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigate("/about-us")}
+                  data-testid="footer-link-about-us"
+                  className="text-sm text-white/70 transition-colors duration-200 hover:text-indigo-400"
+                >
+                  About us
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-mono text-xs uppercase tracking-[0.2em] text-white/40">Social</h4>
+            <ul className="mt-5 space-y-3">
+              {socials.map((s) => (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid={`footer-social-${s.label.toLowerCase()}`}
+                    className="inline-flex items-center gap-1 text-sm text-white/70 transition-colors duration-200 hover:text-indigo-400"
+                  >
+                    {s.label} <ArrowUpRight size={13} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/40 sm:flex-row sm:items-center">
