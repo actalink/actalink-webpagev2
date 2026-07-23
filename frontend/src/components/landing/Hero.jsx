@@ -22,7 +22,7 @@ export default function Hero() {
   const scrollToProducts = () => document.querySelector("#products")?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section id="hero" data-testid="hero-section" className="relative w-full overflow-hidden bg-[#FBFBF7] pt-28 pb-10 md:pb-14 md:pt-36">
+    <section id="hero" data-testid="hero-section" className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden bg-[#FBFBF7] pt-28 pb-16 md:pt-32">
       {/* simple, subtle indigo glow (single, static) */}
       <div
         aria-hidden
