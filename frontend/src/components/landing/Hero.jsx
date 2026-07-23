@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import ProductFlow from "./ProductFlow";
 
-const heroLines = ["The payment interface", "layer for stablecoins"];
+const heroLines = ["The Stablecoin Payment", "Interface Layer"];
 
 const lineWrap = { hidden: {}, show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } } };
 const lineUp = {
@@ -55,9 +55,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.6 }}
             className="mt-7 max-w-lg text-sm font-light leading-relaxed text-neutral-500 md:text-[15px]"
           >
-            Infrastructure powering the complete lifecycle of stablecoin payments — from storing
-            assets and funding accounts to accepting payments and spending anywhere card payments
-            are accepted.
+            Infrastructure powering the complete lifecycle of stablecoin payments.
           </motion.p>
 
           <motion.div

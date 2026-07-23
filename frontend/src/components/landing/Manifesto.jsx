@@ -25,9 +25,9 @@ export default function Manifesto() {
       <div className="mx-auto max-w-[1400px]">
         <Reveal className="mb-16 md:mb-24">
           <h2 className="max-w-4xl font-display text-4xl font-extrabold leading-[1.02] tracking-tight text-[#0A0A0A] sm:text-5xl md:text-6xl">
-            One company. One platform.
+            One company. Four products.
             <br />
-            <span className="text-neutral-400">Four revenue engines.</span>
+            <span className="text-neutral-400">Complete lifecycle of stablecoin payments.</span>
           </h2>
         </Reveal>
 

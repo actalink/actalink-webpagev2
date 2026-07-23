@@ -6,8 +6,9 @@ const products = [
   {
     step: "Store",
     name: "Bexo",
+    logo: "/logos/bexo.webp",
     icon: Wallet,
-    desc: "Secure self-custody wallet enabling users to own and manage digital assets — your keys, your funds, Banking On-Chain.",
+    desc: "Store, manage, and move digital assets with a self-custody wallet featuring gasless transactions — your keys, your funds. Banking On-Chain.",
     tags: ["Self-custody", "Multi-chain", "Consumer"],
   },
   {
@@ -20,8 +21,9 @@ const products = [
   {
     step: "Accept",
     name: "ActaPay",
+    logo: "/logos/actapay.webp",
     icon: Store,
-    desc: "Merchant payment gateway for accepting stablecoin payments online and in-store, with instant settlement.",
+    desc: "Merchant payment gateway for accepting stablecoin payments online and in-store with payment links, subscriptions, invoices, POS, and instant settlement.",
     tags: ["Merchant", "Online + POS", "Instant"],
   },
   {
@@ -68,7 +70,16 @@ const ProductCard = ({ p, index }) => {
             </span>
           </div>
 
-          <h3 className="mt-8 font-display text-4xl font-extrabold tracking-tight text-[#0A0A0A] md:text-5xl">{p.name}</h3>
+          {p.logo ? (
+            <img
+              src={p.logo}
+              alt={`${p.name} logo`}
+              data-testid={`product-logo-${p.name.toLowerCase()}`}
+              className="mt-8 h-8 w-auto object-contain md:h-9"
+            />
+          ) : (
+            <h3 className="mt-8 font-display text-4xl font-extrabold tracking-tight text-[#0A0A0A] md:text-5xl">{p.name}</h3>
+          )}
           <p className="mt-4 max-w-md text-[15px] leading-relaxed text-neutral-600">{p.desc}</p>
 
           <div className="mt-8 flex flex-wrap gap-2">
