@@ -4,7 +4,6 @@ import Seo from "@/components/Seo";
 import Hero from "@/components/landing/Hero";
 import Products from "@/components/landing/Products";
 import BlogPreview from "@/components/landing/BlogPreview";
-import Marquee from "@/components/landing/Marquee";
 
 export default function Landing() {
   return (
@@ -14,7 +13,6 @@ export default function Landing() {
         <Hero />
         <Products />
         <BlogPreview />
-        <Marquee />
       </main>
     </Layout>
   );
