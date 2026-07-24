@@ -4,8 +4,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Reveal from "./Reveal";
 
 const products = [
-  { label: "Bexo", href: "https://bexowallet.com/" },
-  { label: "OpenDeposit", href: "https://opendeposit.xyz/" },
+  { label: "Bexo", href: "https://bexowallet.com" },
+  { label: "OpenDeposit", href: "https://opendeposit.xyz" },
   { label: "ActaPay", href: "https://getactapay.com" },
   { label: "Straight", href: "https://usestraight.com" },
 ];
