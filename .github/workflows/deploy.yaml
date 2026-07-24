@@ -1,0 +1,86 @@
+name: Acta webpage Build and Deployment to GKE
+
+on:
+  push:
+    branches: ["main"]
+
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
+  GKE_ZONE: europe-central2
+  REGISTRY_LOCATION: europe-central2-docker.pkg.dev
+  REGISTRY_REPOSITORY: actalink
+  IMAGE: actaweb
+  # Environment-specific variables
+  DEPLOYMENT_NAME: "actaweb-deployment"
+
+jobs:
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, and Deploy
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: "read"
+      id-token: "write"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Setup Node.js for building the application
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "23.7.0"
+          cache: "npm"
+
+      # Authenticate to Google Cloud
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GKE_SA_KEY }}
+
+      # Setup gcloud CLI
+      - name: Setup Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ secrets.GKE_PROJECT }}
+          install_components: "gke-gcloud-auth-plugin"
+
+      # Configure Docker for Artifact Registry
+      - name: Configure Docker
+        run: |
+          gcloud auth configure-docker ${{ env.REGISTRY_LOCATION }} --quiet
+
+      # Get GKE credentials
+      - name: Get GKE Credentials
+        uses: google-github-actions/get-gke-credentials@v2
+        with:
+          cluster_name: ${{ env.GKE_CLUSTER }}
+          location: ${{ env.GKE_ZONE }}
+
+      # Build Docker image
+      - name: Build Docker image
+        run: |
+          cd frontend && docker build \
+            --tag "${{ env.REGISTRY_LOCATION }}/${{ env.PROJECT_ID }}/${{ env.REGISTRY_REPOSITORY }}/${{ env.IMAGE }}" \
+            --build-arg GITHUB_SHA="${{ github.sha }}" \
+            --build-arg GITHUB_REF="${{ github.ref }}" \
+            .
+
+      # Push Docker image to Artifact Registry
+      - name: Push Docker image
+        run: |
+          docker push "${{ env.REGISTRY_LOCATION }}/${{ env.PROJECT_ID }}/${{ env.REGISTRY_REPOSITORY }}/${{ env.IMAGE }}"
+
+      # Deploy to GKE
+      - name: Deploy to GKE
+        run: |
+          # Update the deployment
+          kubectl rollout restart deployment ${{ env.DEPLOYMENT_NAME }} -n traefik
+
+          # Get deployment status
+          kubectl get deployments -n traefik
+
+          # Wait for deployment to complete
+          kubectl rollout status deployment ${{ env.DEPLOYMENT_NAME }} -n traefik
