@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
-import { blogs } from "@/data/blogs";
+import { useBlogs } from "@/lib/wpBlogs";
+import { Skeleton } from "@/components/ui/skeleton";
 import Reveal from "./Reveal";
 
 export const BlogCard = ({ post, onClick, index = 0 }) => (
@@ -33,7 +34,12 @@ export const BlogCard = ({ post, onClick, index = 0 }) => (
 
 export default function BlogPreview() {
   const navigate = useNavigate();
+  const { data: blogs = [], isLoading } = useBlogs();
   const latest = blogs.slice(0, 3);
+
+  // The landing page keeps its section header either way — an empty grid would
+  // read as broken while the first fetch is in flight.
+  if (!isLoading && latest.length === 0) return null;
 
   return (
     <section id="blog" data-testid="blog-section" className="relative w-full px-5 py-24 md:px-10 md:py-32">
@@ -58,9 +64,13 @@ export default function BlogPreview() {
         </Reveal>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {latest.map((post, i) => (
-            <BlogCard key={post.slug} post={post} index={i} onClick={() => navigate(`/blogs/${post.slug}`)} />
-          ))}
+          {isLoading
+            ? Array.from({ length: 3 }, (_, i) => (
+                <Skeleton key={i} className="h-[420px] w-full rounded-[24px]" />
+              ))
+            : latest.map((post, i) => (
+                <BlogCard key={post.slug} post={post} index={i} onClick={() => navigate(`/blogs/${post.slug}`)} />
+              ))}
         </div>
       </div>
     </section>

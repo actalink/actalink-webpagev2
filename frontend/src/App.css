@@ -3,3 +3,154 @@
   width: 100%;
   position: relative;
 }
+
+/* WordPress post body. Rendered as-is from post_content, so the styling lives
+   here rather than on elements — these mirror the typography the hand-written
+   block renderer used, extended to the tags an editor actually reaches for. */
+.post-body p {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #404040;
+}
+
+.post-body h2 {
+  margin-top: 3rem;
+  font-family: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #0a0a0a;
+}
+
+.post-body h3 {
+  margin-top: 2.5rem;
+  font-family: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #0a0a0a;
+}
+
+.post-body blockquote {
+  margin: 2.5rem 0;
+  border-left: 2px solid #4f46e5;
+  padding-left: 1.5rem;
+  font-family: "Cabinet Grotesk", ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.375;
+  color: #0a0a0a;
+}
+
+.post-body blockquote p {
+  margin-top: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+.post-body ul,
+.post-body ol {
+  margin-top: 1.5rem;
+  padding-left: 1.5rem;
+  color: #404040;
+  line-height: 1.75;
+}
+
+.post-body ul {
+  list-style: disc;
+}
+
+.post-body ol {
+  list-style: decimal;
+}
+
+.post-body li {
+  margin-top: 0.5rem;
+}
+
+.post-body a {
+  color: #4f46e5;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.post-body strong {
+  font-weight: 600;
+  color: #0a0a0a;
+}
+
+.post-body img {
+  margin: 2rem 0;
+  max-width: 100%;
+  height: auto;
+  border-radius: 24px;
+}
+
+.post-body figure {
+  margin: 2rem 0;
+}
+
+.post-body figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: #737373;
+}
+
+.post-body pre {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  border-radius: 16px;
+  background: #0a0a0a;
+  padding: 1.25rem;
+  color: #f5f5f5;
+  font-size: 0.875rem;
+}
+
+.post-body code {
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 0.9em;
+}
+
+.post-body :not(pre) > code {
+  border-radius: 6px;
+  background: rgba(79, 70, 229, 0.08);
+  padding: 0.15em 0.4em;
+  color: #4f46e5;
+}
+
+.post-body hr {
+  margin: 3rem 0;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.post-body table {
+  margin-top: 1.5rem;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.post-body th,
+.post-body td {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.625rem 0.875rem;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .post-body p,
+  .post-body ul,
+  .post-body ol {
+    font-size: 1.125rem;
+  }
+
+  .post-body h2 {
+    font-size: 1.875rem;
+  }
+
+  .post-body blockquote {
+    font-size: 1.5rem;
+  }
+}

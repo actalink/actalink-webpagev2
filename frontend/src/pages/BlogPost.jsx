@@ -4,24 +4,29 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
 import Reveal from "@/components/landing/Reveal";
-import { getBlog, blogs } from "@/data/blogs";
-
-const Block = ({ block }) => {
-  if (block.h2) return <h2 className="mt-12 font-display text-2xl font-bold tracking-tight text-[#0A0A0A] md:text-3xl">{block.h2}</h2>;
-  if (block.quote)
-    return (
-      <blockquote className="my-10 border-l-2 border-indigo-600 pl-6 font-display text-xl font-medium leading-snug text-[#0A0A0A] md:text-2xl">
-        “{block.quote}”
-      </blockquote>
-    );
-  return <p className="mt-6 text-base leading-relaxed text-neutral-700 md:text-lg">{block.p}</p>;
-};
+import { useBlog, useBlogs } from "@/lib/wpBlogs";
 
 export default function BlogPost() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const post = getBlog(slug);
+  const { post, isLoading } = useBlog(slug);
+  const { data: blogs = [] } = useBlogs();
 
+  if (isLoading) {
+    return (
+      <Layout>
+        <main data-testid="blog-post-loading" className="mx-auto max-w-[820px] px-5 pt-44 pb-32 md:px-10">
+          <div className="h-4 w-40 animate-pulse rounded bg-black/10" />
+          <div className="mt-6 h-12 w-full animate-pulse rounded bg-black/10" />
+          <div className="mt-3 h-12 w-2/3 animate-pulse rounded bg-black/10" />
+          <div className="mt-10 h-52 w-full animate-pulse rounded-[24px] bg-black/10 md:h-72" />
+        </main>
+      </Layout>
+    );
+  }
+
+  // Checked only once loading has finished — otherwise every post would flash
+  // "Article not found" on the way in.
   if (!post) {
     return (
       <Layout>
@@ -82,11 +87,13 @@ export default function BlogPost() {
           </Reveal>
 
           <Reveal delay={0.15}>
-            <div className="mt-2">
-              {post.content.map((block, i) => (
-                <Block key={i} block={block} />
-              ))}
-            </div>
+            {/* Rendered as-is from WordPress: plain text stays text, HTML
+                renders as HTML. Styled by `.post-body` in App.css. */}
+            <div
+              className="post-body mt-2"
+              data-testid="blog-post-body"
+              dangerouslySetInnerHTML={{ __html: post.html }}
+            />
             <div className="mt-12 flex items-center gap-3 border-t border-black/10 pt-8">
               <div className="grid h-10 w-10 place-items-center rounded-full bg-indigo-100 font-display text-sm font-bold text-indigo-600">A</div>
               <div>

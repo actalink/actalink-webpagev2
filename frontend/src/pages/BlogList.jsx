@@ -4,10 +4,12 @@ import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
 import { BlogCard } from "@/components/landing/BlogPreview";
 import Reveal from "@/components/landing/Reveal";
-import { blogs } from "@/data/blogs";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useBlogs } from "@/lib/wpBlogs";
 
 export default function BlogList() {
   const navigate = useNavigate();
+  const { data: blogs = [], isLoading, isError } = useBlogs();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -38,11 +40,25 @@ export default function BlogList() {
             </p>
           </Reveal>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {blogs.map((post, i) => (
-              <BlogCard key={post.slug} post={post} index={i} onClick={() => navigate(`/blogs/${post.slug}`)} />
-            ))}
-          </div>
+          {isError ? (
+            <div data-testid="blog-list-error" className="py-16 text-base font-light text-neutral-500">
+              We couldn&apos;t load the articles just now. Please refresh to try again.
+            </div>
+          ) : !isLoading && blogs.length === 0 ? (
+            <div data-testid="blog-list-empty" className="py-16 text-base font-light text-neutral-500">
+              No articles published yet — check back soon.
+            </div>
+          ) : (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {isLoading
+                ? Array.from({ length: 6 }, (_, i) => (
+                    <Skeleton key={i} className="h-[420px] w-full rounded-[24px]" />
+                  ))
+                : blogs.map((post, i) => (
+                    <BlogCard key={post.slug} post={post} index={i} onClick={() => navigate(`/blogs/${post.slug}`)} />
+                  ))}
+            </div>
+          )}
         </div>
       </main>
     </Layout>
