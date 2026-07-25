@@ -6,6 +6,8 @@ import Landing from "@/pages/Landing";
 import BlogList from "@/pages/BlogList";
 import BlogPost from "@/pages/BlogPost";
 import AboutUs from "@/pages/AboutUs";
+import Privacy from "@/pages/Privacy";
+import Terms from "@/pages/Terms";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -18,7 +20,9 @@ function ScrollToTop() {
 
 function App() {
   useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     if (reduce) return;
     const lenis = new Lenis({
       duration: 1.15,
@@ -48,6 +52,8 @@ function App() {
           <Route path="/blogs" element={<BlogList />} />
           <Route path="/blogs/:slug" element={<BlogPost />} />
           <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -162,12 +162,20 @@ export default function Footer() {
             © {new Date().getFullYear()} Actalink. All rights reserved.
           </span>
           <div className="flex gap-6">
-            <a href="#footer" className="transition-colors hover:text-white">
+            <button
+              onClick={() => navigate("/privacy")}
+              data-testid="footer-privacy"
+              className="transition-colors hover:text-white"
+            >
               Privacy
-            </a>
-            <a href="#footer" className="transition-colors hover:text-white">
+            </button>
+            <button
+              onClick={() => navigate("/terms")}
+              data-testid="footer-terms"
+              className="transition-colors hover:text-white"
+            >
               Terms
-            </a>
+            </button>
           </div>
         </div>
       </div>
