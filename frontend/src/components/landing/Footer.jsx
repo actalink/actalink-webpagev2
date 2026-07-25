@@ -116,6 +116,15 @@ export default function Footer() {
               </li>
               <li>
                 <button
+                  onClick={() => navigate("/blogs")}
+                  data-testid="footer-link-blogs"
+                  className="inline-flex items-center gap-1 text-sm text-white/70 transition-colors duration-200 hover:text-indigo-400"
+                >
+                  Blog <ArrowUpRight size={13} />
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => navigate("/about-us")}
                   data-testid="footer-link-about-us"
                   className="text-sm text-white/70 transition-colors duration-200 hover:text-indigo-400"
