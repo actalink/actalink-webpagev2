@@ -34,7 +34,7 @@ export default function Navbar() {
   const navItems = [
     { label: "Home", action: () => navigate("/") },
     { label: "Products", action: () => goSection("products") },
-    // { label: "Blog", action: () => navigate("/blogs") },
+    { label: "Blog", action: () => navigate("/blogs") },
   ];
 
   return (
