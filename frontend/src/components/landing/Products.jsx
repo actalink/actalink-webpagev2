@@ -116,7 +116,7 @@ const ProductCard = ({ p, index }) => {
             rel="noopener noreferrer"
             className="mt-8 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-neutral-400 transition-colors duration-300 group-hover:text-indigo-600"
           >
-            Learn more
+            Visit Webpage
             <ArrowUpRight
               size={14}
               className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
