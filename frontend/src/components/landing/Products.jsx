@@ -21,6 +21,7 @@ const products = [
   {
     step: "Deposit",
     name: "OpenDeposit",
+    logo: "/logos/opendeposit.png",
     icon: ArrowDownToLine,
     desc: "Embedded infrastructure that lets applications accept stablecoin deposits directly from connected wallets.",
     tags: ["Embedded", "Developers", "Funding"],
@@ -38,6 +39,7 @@ const products = [
   {
     step: "Spend",
     name: "Straight",
+    logo: "/logos/straight.png",
     icon: CreditCard,
     desc: "Stablecoin card network enabling users to spend directly from self-custody wallets anywhere cards are accepted.",
     tags: ["Card network", "Global", "Tap to pay"],
@@ -88,7 +90,7 @@ const ProductCard = ({ p, index }) => {
               src={p.logo}
               alt={`${p.name} logo`}
               data-testid={`product-logo-${p.name.toLowerCase()}`}
-              className={`${p.name === "ActaPay" ? "mt-8 h-10 md:h-12" : "mt-8 h-8 md:h-9"} w-auto object-contain`}
+              className={`${p.name === "ActaPay" || p.name === "OpenDeposit" || p.name === "Straight" ? "mt-8 h-10 md:h-12" : "mt-8 h-8 md:h-9"} w-auto object-contain`}
             />
           ) : (
             <h3 className="mt-8 font-display text-4xl font-extrabold tracking-tight text-[#0A0A0A] md:text-5xl">

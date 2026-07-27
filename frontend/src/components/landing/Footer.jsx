@@ -127,9 +127,9 @@ export default function Footer() {
                 <button
                   onClick={() => navigate("/about-us")}
                   data-testid="footer-link-about-us"
-                  className="text-sm text-white/70 transition-colors duration-200 hover:text-indigo-400"
+                  className="inline-flex items-center gap-1 text-sm text-white/70 transition-colors duration-200 hover:text-indigo-400"
                 >
-                  About us
+                  About us <ArrowUpRight size={13} />
                 </button>
               </li>
             </ul>
