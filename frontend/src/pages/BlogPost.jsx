@@ -23,7 +23,7 @@ export default function BlogPost() {
   if (isLoading) {
     return (
       <Layout>
-        <main data-testid="blog-post-loading" className="mx-auto max-w-[820px] px-5 pt-44 pb-32 md:px-10">
+        <main data-testid="blog-post-loading" className="mx-auto max-w-[1400px] px-5 pt-44 pb-32 md:px-10">
           <div className="h-4 w-40 animate-pulse rounded bg-black/10" />
           <div className="mt-6 h-12 w-full animate-pulse rounded bg-black/10" />
           <div className="mt-3 h-12 w-2/3 animate-pulse rounded bg-black/10" />
@@ -74,9 +74,7 @@ export default function BlogPost() {
       <main data-testid="blog-post-page" className="relative w-full px-5 pt-36 pb-24 md:px-10 md:pt-44 md:pb-32">
         <div className="mx-auto max-w-[1400px]">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-        {/* The prose keeps its 820px measure inside the 9-col column — a
-            1000px line length is too long to read comfortably. */}
-        <article className="max-w-[820px] lg:col-span-9">
+        <article className="lg:col-span-9">
           <Reveal>
             <button
               onClick={() => navigate("/blogs")}
