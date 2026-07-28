@@ -134,7 +134,7 @@ export default function AboutUs() {
           </div>
 
           {/* Products */}
-          <div className="mt-24">
+          {/* <div className="mt-24">
             <Reveal>
               <Label>Our products</Label>
               <h2 className="mt-6 font-display text-3xl font-extrabold tracking-tight text-[#0A0A0A] md:text-4xl">
@@ -185,10 +185,10 @@ export default function AboutUs() {
                 </Reveal>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Contact us */}
-          <Reveal className="mt-24">
+          {/* <Reveal className="mt-24">
             <div className="rounded-[28px] bg-[#0A0A0A] p-10 text-white md:p-14">
               <Label>Contact us</Label>
               <h2 className="mt-5 font-display text-3xl font-extrabold tracking-tight md:text-4xl">
@@ -246,7 +246,7 @@ export default function AboutUs() {
                 />
               </button>
             </div>
-          </Reveal>
+          </Reveal> */}
         </div>
       </main>
     </Layout>
