@@ -91,7 +91,7 @@ export default function BlogPost() {
             {/* No excerpt under the title: WP auto-generates it from the opening
                 of the post, so it printed the first paragraph twice. It still
                 feeds <Seo> and the JSON-LD description above. */}
-            <h1 className="font-display text-4xl font-black leading-[1.0] tracking-tighter text-[#0A0A0A] md:text-6xl">{post.title}</h1>
+            <h1 className="font-display text-4xl font-black leading-[1.0] tracking-normal text-[#0A0A0A] md:text-6xl">{post.title}</h1>
           </Reveal>
 
           <Reveal delay={0.1}>
