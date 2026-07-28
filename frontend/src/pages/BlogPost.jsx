@@ -78,8 +78,10 @@ export default function BlogPost() {
               <span className="text-neutral-400">{post.date}</span><span className="text-neutral-300">·</span>
               <span className="text-neutral-400">{post.readTime}</span>
             </div>
+            {/* No excerpt under the title: WP auto-generates it from the opening
+                of the post, so it printed the first paragraph twice. It still
+                feeds <Seo> and the JSON-LD description above. */}
             <h1 className="font-display text-4xl font-black leading-[1.0] tracking-tighter text-[#0A0A0A] md:text-6xl">{post.title}</h1>
-            <p className="mt-5 text-lg font-light leading-relaxed text-neutral-500">{post.excerpt}</p>
           </Reveal>
 
           <Reveal delay={0.1}>
