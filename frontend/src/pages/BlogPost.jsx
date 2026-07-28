@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
+import BlogSidebar from "@/components/blog/BlogSidebar";
 import Reveal from "@/components/landing/Reveal";
 import { useBlog, useBlogs } from "@/lib/wpBlogs";
 
@@ -11,6 +12,13 @@ export default function BlogPost() {
   const navigate = useNavigate();
   const { post, isLoading } = useBlog(slug);
   const { data: blogs = [] } = useBlogs();
+  // There is no list to filter here, so the sidebar's search hands the term to
+  // the archive instead of doing nothing.
+  const [query, setQuery] = useState("");
+  const submitSearch = (event) => {
+    event.preventDefault();
+    if (query.trim()) navigate(`/blogs?q=${encodeURIComponent(query.trim())}`);
+  };
 
   if (isLoading) {
     return (
@@ -64,7 +72,11 @@ export default function BlogPost() {
     <Layout>
       <Seo title={post.title} description={post.excerpt} path={`/blogs/${post.slug}`} type="article" jsonLd={jsonLd} />
       <main data-testid="blog-post-page" className="relative w-full px-5 pt-36 pb-24 md:px-10 md:pt-44 md:pb-32">
-        <article className="mx-auto max-w-[820px]">
+        <div className="mx-auto max-w-[1400px]">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+        {/* The prose keeps its 820px measure inside the 9-col column — a
+            1000px line length is too long to read comfortably. */}
+        <article className="max-w-[820px] lg:col-span-9">
           <Reveal>
             <button
               onClick={() => navigate("/blogs")}
@@ -106,7 +118,15 @@ export default function BlogPost() {
           </Reveal>
         </article>
 
-        <div className="mx-auto mt-24 max-w-[1400px]">
+        <BlogSidebar
+          query={query}
+          onQueryChange={setQuery}
+          onSubmit={submitSearch}
+          excludeSlug={slug}
+        />
+        </div>
+
+        <div className="mt-24">
           <h3 className="mb-8 font-display text-2xl font-bold tracking-tight text-[#0A0A0A]">More articles</h3>
           <div className="grid gap-6 md:grid-cols-2">
             {more.map((p) => (
@@ -125,6 +145,7 @@ export default function BlogPost() {
               </button>
             ))}
           </div>
+        </div>
         </div>
       </main>
     </Layout>

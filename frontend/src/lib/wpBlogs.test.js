@@ -24,6 +24,7 @@ test("maps a WordPress post onto the shape the blog components expect", () => {
 
   expect(post.slug).toBe("why-we-charge-only-gas");
   expect(post.category).toBe("Pricing"); // category, not the post_tag
+  expect(post.tags).toEqual(["fees"]); // post_tags, not the category
   expect(post.iso).toBe("2026-04-28");
   expect(post.date).toBe("Apr 28, 2026");
   expect(post.readTime).toBe("2 min read"); // 400 words / 200

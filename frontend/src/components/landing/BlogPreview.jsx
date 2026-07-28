@@ -21,8 +21,11 @@ export const BlogCard = ({ post, onClick, index = 0 }) => (
         <div className="mb-3 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-neutral-400">
           <span>{post.date}</span><span>·</span><span>{post.readTime}</span>
         </div>
-        <h3 className="font-display text-xl font-bold leading-snug tracking-tight text-[#0A0A0A] md:text-2xl">{post.title}</h3>
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-neutral-600">{post.excerpt}</p>
+        {/* Clamped: WordPress titles and excerpts run to wildly different
+            lengths, which knocked the excerpt and the CTA out of line across a
+            row of cards. Two lines of title, three of excerpt, every card. */}
+        <h3 className="line-clamp-2 font-display text-xl font-bold leading-snug tracking-tight text-[#0A0A0A] md:text-2xl">{post.title}</h3>
+        <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-neutral-600">{post.excerpt}</p>
         <span className="mt-5 inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.16em] text-indigo-600">
           Read article
           <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
