@@ -32,10 +32,16 @@ const formatDate = (value) => {
 
 export const mapPost = (post, index) => {
   const embedded = post._embedded || {};
-  const image = embedded["wp:featuredmedia"]?.[0]?.source_url;
-  const category = (embedded["wp:term"] || [])
-    .flat()
-    .find((term) => term?.taxonomy === "category")?.name;
+  // Featured image first. Failing that, the first image in the body — a real
+  // thumbnail beats a placeholder — and only then the gradient.
+  const image =
+    embedded["wp:featuredmedia"]?.[0]?.source_url ||
+    (post.content?.rendered || "").match(/<img[^>]+src="([^"]+)"/)?.[1];
+  const terms = (embedded["wp:term"] || []).flat();
+  const category = terms.find((term) => term?.taxonomy === "category")?.name;
+  const tags = terms
+    .filter((term) => term?.taxonomy === "post_tag")
+    .map((term) => term.name);
 
   return {
     id: post.id,
@@ -43,6 +49,7 @@ export const mapPost = (post, index) => {
     title: toText(post.title?.rendered),
     excerpt: toText(post.excerpt?.rendered).trim(),
     category: category || "Insights",
+    tags,
     date: formatDate(post.date),
     iso: (post.date || "").slice(0, 10),
     readTime: readTime(post.content?.rendered),
