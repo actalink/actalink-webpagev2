@@ -12,7 +12,9 @@ const lineUp = {
 };
 
 const stats = [
-  { value: "04", label: "Specialised products", color: "#0A0A0A" },
+  // Tracks the cards in Products.jsx — was "04" before OpenDeposit and Straight
+  // came off the site on 2026-07-30.
+  { value: "02", label: "Specialised products", color: "#0A0A0A" },
   { value: "6+", label: "Networks supported", color: "#4F46E5" },
   { value: "99.99%", label: "Uptime target", color: "#0A0A0A" },
   { value: "Real-time", label: "Settlement", color: "#4F46E5" },
@@ -74,12 +76,13 @@ export default function Hero() {
             </button>
           </motion.div>
 
-          {/* stats */}
+          {/* stats. gap-x: without it "Specialised products" ran straight into
+              "Networks supported" — the labels are wider than their columns. */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="mt-16 grid grid-cols-2 gap-y-8 border-t border-black/10 pt-8 sm:grid-cols-4"
+            className="mt-16 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-black/10 pt-8 sm:grid-cols-4"
           >
             {stats.map((s) => (
               <div key={s.label} data-testid={`hero-stat-${s.value}`}>

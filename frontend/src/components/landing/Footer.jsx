@@ -3,11 +3,11 @@ import { ArrowUpRight } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Reveal from "./Reveal";
 
+// OpenDeposit and Straight came out on 2026-07-30 along with their cards on the
+// landing page — neither is public yet.
 const products = [
   { label: "Bexo", href: "https://bexowallet.com" },
-  { label: "OpenDeposit", href: "https://opendeposit.xyz" },
   { label: "ActaPay", href: "https://getactapay.com" },
-  { label: "Straight", href: "https://usestraight.com" },
 ];
 
 const socials = [

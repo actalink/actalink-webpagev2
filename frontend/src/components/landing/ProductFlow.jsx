@@ -1,14 +1,21 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Wallet, ArrowDownToLine, Store, CreditCard, Wifi, Check } from "lucide-react";
+import { Wallet, Store } from "lucide-react";
 
 /*
   Kinetic product-flow cluster used inside the Hero.
   Black / white / indigo (#4F46E5) aesthetic (frosted white cards).
-  2x2 grid of EQUALLY sized cards. Flow: Deposit (top-left) -> Store (top-right)
-  -> Spend (bottom-right) -> Accept (bottom-left), linked by self-drawing lines.
-  500x530 reference grid, sized in container-query width units (cqw). SVG viewBox
-  (0 0 500 530) with preserveAspectRatio="none" keeps scaling uniform.
+  Two EQUALLY sized cards, side by side. Flow: Accept (left) -> Store (right),
+  linked by a self-drawing line. Was a 2x2 with Deposit/OpenDeposit and
+  Spend/Straight until 2026-07-30; dropping them collapsed the grid to one row,
+  so the reference box went 500x530 -> 500x300. 500-wide reference grid, sized in
+  container-query width units (cqw). SVG viewBox (0 0 500 300) with
+  preserveAspectRatio="none" keeps scaling uniform.
+
+  Geometry and the connector path have to move together. 1cqw = 5px of the
+  reference grid. Cards are 44cqw wide with a 12cqw gutter (x 0-220 and 280-500),
+  and the right card sits 12cqw lower than the left so the elbow has room to
+  step down. Change any of that and the path below needs the same edit.
 */
 
 const cardIn = {
@@ -38,7 +45,9 @@ const StepTag = ({ n, label }) => (
     <span className="grid place-items-center rounded-[1.2cqw] bg-[#4F46E5] px-[1.8cqw] py-[0.8cqw] font-display text-[2.4cqw] font-bold leading-none text-white">
       {n}
     </span>
-    <span className="font-mono text-[2.4cqw] font-semibold uppercase tracking-[0.14em] text-neutral-800">{label}</span>
+    {/* Deliberately under the 2.6cqw product name below it — this is the step,
+        not the headline. nowrap because "Track & manage" is the long one. */}
+    <span className="whitespace-nowrap font-mono text-[1.9cqw] font-semibold uppercase tracking-[0.14em] text-[#4F46E5]">{label}</span>
   </div>
 );
 
@@ -48,10 +57,18 @@ const Chip = ({ children }) => (
   </span>
 );
 
-const Head = ({ icon, label }) => (
+// The product name carries the row — larger, bold and black — with its audience
+// trailing in the old small grey. Both stay on one line: Space Mono advances a
+// flat 0.6em, so at these sizes "ACTAPAY · MERCHANT" measures ~35cqw against the
+// 38cqw of card left inside the padding. Push either size up and it will clip
+// (the card is overflow-hidden), so re-measure before changing them.
+const Head = ({ icon, name, role }) => (
   <div className="flex items-center gap-[1.8cqw]">
     <span className="grid h-[6cqw] w-[6cqw] place-items-center rounded-full bg-indigo-100 text-indigo-600">{icon}</span>
-    <span className="whitespace-nowrap font-mono text-[2cqw] uppercase tracking-[0.12em] text-neutral-400">{label}</span>
+    <span className="whitespace-nowrap font-mono uppercase tracking-[0.12em]">
+      <span className="text-[2.6cqw] font-bold text-[#0A0A0A]">{name}</span>
+      <span className="text-[1.8cqw] text-neutral-400"> · {role}</span>
+    </span>
   </div>
 );
 
@@ -59,60 +76,30 @@ export default function ProductFlow() {
   return (
     <div
       data-testid="product-flow"
-      className="relative mx-auto w-full max-w-[500px] aspect-[500/530]"
+      className="relative mx-auto w-full max-w-[500px] aspect-[500/300]"
       style={{ containerType: "inline-size" }}
     >
-      {/* connecting lines — indigo. Deposit->Store->Spend->Accept */}
-      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 500 530" fill="none" preserveAspectRatio="none">
-        <motion.path d="M230 140 L270 140" stroke="#818CF8" strokeWidth="2.6" strokeLinecap="round" variants={pathDraw(0)} initial="hidden" animate="show" />
-        <motion.path d="M385 250 L385 290" stroke="#A5B4FC" strokeWidth="2.6" strokeLinecap="round" variants={pathDraw(1)} initial="hidden" animate="show" />
-        <motion.path d="M270 400 L230 400" stroke="#818CF8" strokeWidth="2.6" strokeLinecap="round" variants={pathDraw(2)} initial="hidden" animate="show" />
+      {/* Connecting elbow — indigo. Accept -> Track & manage. Leaves the left
+          card's right edge at its mid-height (y 120), steps down through the
+          gutter on rounded corners and enters the right card at its mid-height
+          (y 180). preserveAspectRatio="none" stretches the box, so the corner
+          arcs skew a little off a 500x300 render — imperceptible at these radii. */}
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 500 300" fill="none" preserveAspectRatio="none">
+        <motion.path
+          d="M220 120 H240 Q250 120 250 130 V170 Q250 180 260 180 H280"
+          stroke="#818CF8"
+          strokeWidth="2.6"
+          strokeLinecap="round"
+          variants={pathDraw(0)}
+          initial="hidden"
+          animate="show"
+        />
       </svg>
 
-      {/* 01 — DEPOSIT / OpenDeposit  (TOP-LEFT) */}
-      <motion.div custom={0} variants={cardIn} initial="hidden" animate="show" className={`${CARD} left-[0cqw] top-[6cqw] w-[46cqw]`}>
-        <StepTag n="01" label="Deposit" />
-        <Head icon={<ArrowDownToLine className="h-[3.2cqw] w-[3.2cqw]" />} label="OpenDeposit" />
-        <div className="mt-auto rounded-[2cqw] border border-black/[0.06] bg-neutral-50 p-[2.2cqw]">
-          <div className="flex items-center justify-between text-[2.1cqw] text-neutral-500">
-            <span>Incoming deposit</span><span className="flex items-center gap-[1cqw] text-indigo-600"><span className="h-[1.4cqw] w-[1.4cqw] rounded-full bg-indigo-600" />live</span>
-          </div>
-          <div className="mt-[1.2cqw] font-display text-[4.8cqw] font-bold text-neutral-900">+ 5,000.00 <span className="text-[2.2cqw] text-neutral-400">USDC</span></div>
-        </div>
-      </motion.div>
-
-      {/* 02 — STORE / Bexo  (TOP-RIGHT) */}
-      <motion.div custom={1} variants={cardIn} initial="hidden" animate="show" className={`${CARD} left-[54cqw] top-[6cqw] w-[46cqw]`}>
-        <StepTag n="02" label="Store" />
-        <Head icon={<Wallet className="h-[3.2cqw] w-[3.2cqw]" />} label="Bexo · Wallet" />
-        <div className="mt-auto">
-          <div className="font-display text-[6.4cqw] font-extrabold leading-none text-neutral-900">
-            <span className="text-[2.8cqw] align-top text-neutral-400">US$</span> 12,847<span className="text-neutral-400">.36</span>
-          </div>
-          <div className="mt-[2cqw] flex flex-wrap gap-[1.2cqw]">
-            <Chip>Base</Chip><Chip>Polygon</Chip><Chip>Ethereum</Chip>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* 03 — SPEND / Straight  (BOTTOM-RIGHT) */}
-      <motion.div custom={2} variants={cardIn} initial="hidden" animate="show" className={`${CARD} left-[54cqw] top-[58cqw] w-[46cqw]`}>
-        <StepTag n="03" label="Spend" />
-        <Head icon={<CreditCard className="h-[3.2cqw] w-[3.2cqw]" />} label="Straight · Card" />
-        <div className="mt-auto flex items-center justify-between rounded-[2cqw] bg-gradient-to-br from-neutral-900 to-neutral-700 p-[2.2cqw]">
-          <div>
-            <div className="font-mono text-[1.9cqw] uppercase tracking-[0.16em] text-white/60">USDC · Base</div>
-            <div className="mt-[1.6cqw] h-[3.2cqw] w-[5.6cqw] rounded-[0.8cqw] bg-indigo-400/90" />
-            <div className="mt-[1.6cqw] font-mono text-[1.9cqw] uppercase tracking-[0.16em] text-white/80">Alex Chen</div>
-          </div>
-          <Wifi className="h-[4cqw] w-[4cqw] text-white/60" />
-        </div>
-      </motion.div>
-
-      {/* 04 — ACCEPT / ActaPay  (BOTTOM-LEFT) */}
-      <motion.div custom={3} variants={cardIn} initial="hidden" animate="show" className={`${CARD} left-[0cqw] top-[58cqw] w-[46cqw]`}>
-        <StepTag n="04" label="Accept" />
-        <Head icon={<Store className="h-[3.2cqw] w-[3.2cqw]" />} label="ActaPay · Merchant" />
+      {/* 01 — ACCEPT / ActaPay  (LEFT, raised) */}
+      <motion.div custom={0} variants={cardIn} initial="hidden" animate="show" className={`${CARD} left-[0cqw] top-[2cqw] w-[44cqw]`}>
+        <StepTag n="01" label="Accept" />
+        <Head icon={<Store className="h-[3.2cqw] w-[3.2cqw]" />} name="ActaPay" role="Merchant" />
         <div className="mt-auto flex items-end justify-between">
           <div>
             <div className="font-display text-[3.4cqw] font-bold text-neutral-900">Café Loro</div>
@@ -123,6 +110,20 @@ export default function ProductFlow() {
           <div className="text-right">
             <div className="font-display text-[4.2cqw] font-extrabold text-indigo-600">+$28.40</div>
             <div className="font-mono text-[1.9cqw] uppercase tracking-[0.12em] text-neutral-400">USDC · Instant</div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* 02 — TRACK & MANAGE / Bexo  (RIGHT, dropped 12cqw) */}
+      <motion.div custom={1} variants={cardIn} initial="hidden" animate="show" className={`${CARD} left-[56cqw] top-[14cqw] w-[44cqw]`}>
+        <StepTag n="02" label="Track & manage" />
+        <Head icon={<Wallet className="h-[3.2cqw] w-[3.2cqw]" />} name="Bexo" role="Consumer" />
+        <div className="mt-auto">
+          <div className="font-display text-[6.4cqw] font-extrabold leading-none text-neutral-900">
+            <span className="text-[2.8cqw] align-top text-neutral-400">US$</span> 12,847<span className="text-neutral-400">.36</span>
+          </div>
+          <div className="mt-[2cqw] flex flex-wrap gap-[1.2cqw]">
+            <Chip>Base</Chip><Chip>Polygon</Chip><Chip>Ethereum</Chip>
           </div>
         </div>
       </motion.div>

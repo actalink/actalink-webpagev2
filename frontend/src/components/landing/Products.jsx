@@ -1,32 +1,14 @@
 import React, { useRef } from "react";
-import {
-  Wallet,
-  ArrowDownToLine,
-  Store,
-  CreditCard,
-  ArrowUpRight,
-} from "lucide-react";
+import { Wallet, Store, ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
 
+// OpenDeposit (Deposit) and Straight (Spend) were pulled from the site on
+// 2026-07-30 — neither is public yet. Their cards, hero-flow tiles and footer
+// links went with them; the copy above the grid counts this array, so keep the
+// heading in step if a product comes back.
+// Order matters twice over: it sets the card order AND the 01/02 step numbers,
+// which have to agree with the hero flow cluster in ProductFlow.jsx.
 const products = [
-  {
-    step: "Store",
-    name: "Bexo",
-    logo: "/logos/bexo.webp",
-    icon: Wallet,
-    desc: "Store, manage, and move digital assets with a self-custody wallet featuring gasless transactions — your keys, your funds. Banking On-Chain.",
-    tags: ["Self-custody", "Multi-chain", "Consumer"],
-    href: "https://bexowallet.com/",
-  },
-  {
-    step: "Deposit",
-    name: "OpenDeposit",
-    logo: "/logos/opendeposit.png",
-    icon: ArrowDownToLine,
-    desc: "Embedded infrastructure that lets applications accept stablecoin deposits directly from connected wallets.",
-    tags: ["Embedded", "Developers", "Funding"],
-    href: "https://opendeposit.xyz",
-  },
   {
     step: "Accept",
     name: "ActaPay",
@@ -37,13 +19,13 @@ const products = [
     href: "https://getactapay.com",
   },
   {
-    step: "Spend",
-    name: "Straight",
-    logo: "/logos/straight.png",
-    icon: CreditCard,
-    desc: "Stablecoin card network enabling users to spend directly from self-custody wallets anywhere cards are accepted.",
-    tags: ["Card network", "Global", "Tap to pay"],
-    href: "https://usestraight.com",
+    step: "Track & manage",
+    name: "Bexo",
+    logo: "/logos/bexo.webp",
+    icon: Wallet,
+    desc: "Store, manage, and move digital assets with a self-custody wallet featuring gasless transactions — your keys, your funds. Banking On-Chain.",
+    tags: ["Self-custody", "Multi-chain", "Consumer"],
+    href: "https://bexowallet.com/",
   },
 ];
 
@@ -90,7 +72,7 @@ const ProductCard = ({ p, index }) => {
               src={p.logo}
               alt={`${p.name} logo`}
               data-testid={`product-logo-${p.name.toLowerCase()}`}
-              className={`${p.name === "ActaPay" || p.name === "OpenDeposit" || p.name === "Straight" ? "mt-8 h-10 md:h-12" : "mt-8 h-8 md:h-9"} w-auto object-contain`}
+              className={`${p.name === "ActaPay" ? "mt-8 h-10 md:h-12" : "mt-8 h-8 md:h-9"} w-auto object-contain`}
             />
           ) : (
             <h3 className="mt-8 font-display text-4xl font-extrabold tracking-tight text-[#0A0A0A] md:text-5xl">
@@ -146,12 +128,12 @@ export default function Products() {
             <h2 className="mt-6 max-w-2xl font-display text-4xl font-extrabold leading-[1.03] tracking-tight text-[#0A0A0A] sm:text-5xl md:text-6xl">
               One platform.
               <br />
-              Four capabilities.
+              Two capabilities.
             </h2>
           </div>
           <p className="max-w-sm text-base leading-relaxed text-neutral-600">
-            Store, deposit, accept and spend — the complete lifecycle of
-            programmable money, connected end to end.
+            Accept and manage — the lifecycle of programmable money, connected
+            end to end.
           </p>
         </Reveal>
 
