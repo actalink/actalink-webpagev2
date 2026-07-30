@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Menu } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -36,6 +43,14 @@ export default function Navbar() {
     { label: "Products", action: () => goSection("products") },
     { label: "Blog", action: () => navigate("/blogs") },
   ];
+
+  // Radix locks body scroll while the sheet is open, so a goSection() fired from
+  // a drawer link would be swallowed. Close first, then act once the 0.3s
+  // slide-out has finished.
+  const runAndClose = (action) => {
+    setMenuOpen(false);
+    setTimeout(action, 300);
+  };
 
   return (
     <motion.header
@@ -78,17 +93,58 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <button
-          onClick={() => goSection("footer")}
-          data-testid="nav-get-in-touch"
-          className="group inline-flex items-center gap-1.5 rounded-full border border-black/15 bg-white px-4 py-2 text-sm font-semibold text-[#0A0A0A] transition-colors hover:border-black hover:bg-black hover:text-white"
-        >
-          Get in touch
-          <ArrowUpRight
-            size={15}
-            className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          />
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => goSection("footer")}
+            data-testid="nav-get-in-touch"
+            className="group inline-flex items-center gap-1.5 rounded-full border border-black/15 bg-white px-4 py-2 text-sm font-semibold text-[#0A0A0A] transition-colors hover:border-black hover:bg-black hover:text-white"
+          >
+            Get in touch
+            <ArrowUpRight
+              size={15}
+              className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </button>
+
+          {/* Mobile only — the md+ breakpoint has the inline nav above. */}
+          <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+            <SheetTrigger asChild>
+              <button
+                aria-label="Open menu"
+                data-testid="nav-menu-toggle"
+                className="inline-flex items-center justify-center rounded-full border border-black/15 bg-white p-2 text-[#0A0A0A] transition-colors hover:border-black hover:bg-black hover:text-white md:hidden"
+              >
+                <Menu size={18} />
+              </button>
+            </SheetTrigger>
+            {/* The scaffold's default is 500ms in / 300ms out; both are pinned to
+                300ms here. */}
+            <SheetContent
+              side="left"
+              data-testid="nav-mobile-menu"
+              className="w-[78%] max-w-[320px] border-black/5 bg-[#FBFBF7] data-[state=closed]:duration-300 data-[state=open]:duration-300"
+            >
+              <SheetTitle className="sr-only">Menu</SheetTitle>
+              <img
+                src="/logos/actalink-black.png"
+                alt="Actalink"
+                className="h-9 w-auto"
+              />
+              <nav className="mt-10 flex flex-col">
+                {navItems.map((l) => (
+                  <button
+                    key={l.label}
+                    onClick={() => runAndClose(l.action)}
+                    data-testid={`nav-mobile-link-${l.label.toLowerCase()}`}
+                    className="border-b border-black/5 py-4 text-left font-display text-2xl font-extrabold tracking-tight text-[#0A0A0A] transition-colors hover:text-indigo-600"
+                  >
+                    {l.label}
+                  </button>
+                ))}
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </motion.header>
   );
