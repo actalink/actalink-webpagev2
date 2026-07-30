@@ -93,17 +93,12 @@ export default function BlogList() {
       <main data-testid="blog-list-page" className="relative w-full px-5 pt-36 pb-24 md:px-10 md:pt-44 md:pb-32">
         <div className="mx-auto max-w-[1400px]">
           <Reveal className="mb-14 md:mb-20">
-            <span className="font-mono text-xs uppercase tracking-[0.24em] text-neutral-500">The blog</span>
-            {/* One line from md up: the size tracks the viewport so the whole
-                sentence always fits. Below md it wraps — held to one line it
-                would shrink to ~20px and read smaller than the card copy. */}
-            <h1 className="mt-6 font-display text-5xl font-black leading-[0.98] tracking-normal text-[#0A0A0A] sm:text-6xl md:whitespace-nowrap md:text-[clamp(2.5rem,4.8vw,4.5rem)]">
-              Insights on programmable money.
-            </h1>
-            <p className="mt-6 text-base font-light leading-relaxed text-neutral-500">
-              Perspectives, guides and engineering notes on stablecoin payments, from storing assets to spending anywhere.
-            </p>
-            <FilterGroup className="mt-12" label="Categories" options={categories} value={category} onChange={setCategory} testid="blog-filter-category" />
+            {/* The display heading and the description under it were dropped on
+                2026-07-30 — the eyebrow carries the page title now, so it is the
+                h1 rather than a span (the page would otherwise have none; the
+                full sentence still ships to search via <Seo>). */}
+            <h1 className="font-mono text-xs uppercase tracking-[0.24em] text-neutral-500">The blog</h1>
+            <FilterGroup className="mt-8" label="Categories" options={categories} value={category} onChange={setCategory} testid="blog-filter-category" />
           </Reveal>
 
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
