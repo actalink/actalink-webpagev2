@@ -32,7 +32,10 @@ export default function Hero() {
         style={{ background: "radial-gradient(circle, rgba(129,140,248,0.13), transparent 62%)" }}
       />
 
-      <div className="relative z-10 mx-auto grid max-w-[1400px] grid-cols-1 gap-12 px-5 md:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10">
+      {/* items-start, not items-center: the flow cluster's first card has to line
+          up with the top of the heading. Its height is tuned to land the second
+          card on the stats row — see ProductFlow. */}
+      <div className="relative z-10 mx-auto grid max-w-[1400px] grid-cols-1 gap-12 px-5 md:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-10">
         {/* Left — copy */}
         <div>
           <motion.h1

@@ -15,7 +15,7 @@ const products = [
     logo: "/logos/actapay.webp",
     icon: Store,
     desc: "Merchant payment gateway for accepting stablecoin payments online and in-store with payment links, subscriptions, invoices, POS, and instant settlement.",
-    tags: ["Merchant", "Online + POS", "Instant"],
+    tags: ["Merchant", "Subscriptions", "Paylinks", "Commerce", "POS", "Invoice"],
     href: "https://getactapay.com",
   },
   {
@@ -24,7 +24,7 @@ const products = [
     logo: "/logos/bexo.webp",
     icon: Wallet,
     desc: "Store, manage, and move digital assets with a self-custody wallet featuring gasless transactions — your keys, your funds. Banking On-Chain.",
-    tags: ["Self-custody", "Multi-chain", "Consumer"],
+    tags: ["Self-custody", "Multi-chain", "Gasless transfers", "Batch payouts"],
     href: "https://bexowallet.com/",
   },
 ];
@@ -79,7 +79,9 @@ const ProductCard = ({ p, index }) => {
               {p.name}
             </h3>
           )}
-          <p className="mt-4 max-w-md text-[15px] leading-relaxed text-neutral-600">
+          {/* No max-w: the grid went from four cards to two, so each one is wide
+              enough that a 28rem cap just left the copy hugging the left half. */}
+          <p className="mt-4 text-[15px] leading-relaxed text-neutral-600">
             {p.desc}
           </p>
 
